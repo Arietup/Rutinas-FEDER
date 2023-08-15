@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="m-auto col-md-6 offset-md-4 mt-5">
+            <section class="card card-body">
+                <h1 class="display-1 text-center">FEDER GYM</h1>
+        
+                <p>Interfaz digital de FEDER GYM, pensada y diseñada para facilitar el proceso de 
+                    entrenamiento tanto para los estudiantes como para los entrenadores.
+                </p>
+
+                {% if user.is_authenticated %}
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{% url 'logout' %}">
+                        Cerrar sesion
+                    </a>
+                {% else %}
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{% url 'signin' %}">
+                        Iniciar Sesion
+                    </a>
+                    <a class="btn btn-primary" href="{% url 'signup' %}">
+                        Registrarse
+                    </a>
+                {% endif %}
+                </div>
+                </div>
+            </section>
+    </div>   
+</main>
+
+{% endblock %}

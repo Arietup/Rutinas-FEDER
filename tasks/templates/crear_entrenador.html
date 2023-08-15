@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="m-auto col-md-6 offset-md-4 mt-5">
+      <form action="/entrenadores/create/" method="POST" class="card card-body">
+        <h1 class="text-center display-3 py-3">Crear perfil</h1>
+
+        {{error}} {{form_crear_entrenador.as_p}} {% csrf_token %}
+
+        <button class="btn btn-primary">Guardar Entrenador</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

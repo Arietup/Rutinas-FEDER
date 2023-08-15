@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="text-center display-3 py-3">Entrenadores</h1>
+      <ul class="list-group">
+        {% for entrenador in entrenadores %}
+        <a class="list-group-item" href="{% url 'entrenador_detalle' entrenador.id %}"> 
+            <h1 class="fw-bold">{{entrenador.nombres}} {{entrenador.apellidos}}</h1>
+            <p>carrera: {{entrenador.carrera}}</p>
+            <p>correo electronico: {{entrenador.correo_electronico}}</p>
+            <p>Semestre: {{entrenador.semestre_actual}}</p>
+        </a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

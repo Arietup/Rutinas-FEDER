@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="m-auto col-md-6 offset-md-4 mt-5">
+      <h1 class="fw-bold text-center">Detalle del Estudiante</h1>
+      {{error}}
+
+      <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-primary">Actualizar</button>
+      </form>
+      <br />
+      <p>Entrenamiento: {{estudiante.recomendacion_entrenamiento}}</p>
+
+      <p>Fecha de creacion: {{estudiante.fecha_creacion}}</p>
+
+      <p>Indice de Masa Corporal: {{estudiante.imc}}</p>
+      <p>Estado Fisico: {{estudiante.estado_fisico}}</p>
+
+      {% if estudiante.nivel_fitness == '1' %}
+      <p>Nivel Fitness: Novato</p>
+      {% elif estudiante.nivel_fitness == '2' %}
+      <p>Nivel Fitness: Intermedio</p>
+      {% else %}
+      <p>Nivel Fitness: Avanzado</p>
+      {% endif %}
+
+      <p>Recomendacion Peso: {{estudiante.recomendacion_peso}}</p>
+
+      {% if estudiante.objetivo_conseguido %}
+      <strong> El estudiante ha conseguido sus objetivos </strong>
+      {% else %}
+      <strong> El estudiante está en proceso </strong>
+      {% endif %}
+      <p>{{estudiante.fecha_completado|date:"D d M Y - i:s"}}</p>
+
+      <div class="mt-5 d-flex">
+        <form action="{% url 'complete_task' estudiante.id %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-secondary">Completar</button>
+        </form>
+
+        <form action="{% url 'delete_task' estudiante.id %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

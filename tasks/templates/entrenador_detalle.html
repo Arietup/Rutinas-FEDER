@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="m-auto col-md-6 offset-md4 mt-5">
+      <h1 class="fw-bold text-center">Detalles del Entrenador</h1>
+      {{error}}
+
+      <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-primary">Actualizar</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

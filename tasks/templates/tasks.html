@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="text-center display-3 py-3">Mis Estudiantes</h1>
+
+      <ul class="list-group">
+        {% for estudiante in estudiantes %}
+        <a
+          class="list-group-item"
+          href="{% url 'task_detalle' estudiante.id %}"
+        >
+          <h1 class="fw-bold">
+            {{estudiante.nombres}} {{estudiante.apellidos}}
+          </h1>
+          <header class="d-flex justify-content-between">
+            <p>Facultad: {{estudiante.facultad}}</p>
+            <p>Carrera: {{estudiante.carrera}}</p>
+          </header>
+          <header class="d-flex justify-content-between">
+            <p>Estado fisico: {{estudiante.estado_fisico}}</p>
+            <p>edad: {{estudiante.edad}}</p>
+          </header>
+
+          <p>
+            Plan de entrenamiento: {{estudiante.recomendacion_entrenamiento}}
+          </p>
+
+          {% if estudiante.lesiones_enfermedades %}
+          <strong class="text-danger">
+            El estudiante tiene lesiones o enfermedades
+          </strong>
+          {% endif %}
+
+          <p>Entrenador: {{estudiante.entrenador}}</p>
+
+          <p>{{estudiante.fecha_completado|date:'M j Y:i'}}</p>
+        </a>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
